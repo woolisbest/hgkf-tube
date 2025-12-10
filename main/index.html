@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hgkf-Tube_v1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/woolisbest/hgkf-tube@main/main/style.css">
+</head>
+<body>
+    <!-- 初期設定画面 -->
+    <div id="setupScreen" class="setup-screen">
+        <div class="setup-container">
+            <h1 class="setup-title">YouTubeクローン - 初期設定</h1>
+            
+            <div class="setup-section">
+                <h2 class="setup-section-title">APIキーを選択してください</h2>
+                <div class="api-options">
+                    <div class="api-option" data-api-key="AIzaSyCz7f0X_giaGyC9u1EfGZPBuAC9nXiL5Mo">
+                        <span class="option-number">1</span>
+                        <span>APIキー 1</span>
+                    </div>
+                    <div class="api-option" data-api-key="AIzaSyBmzCw7-sX1vm-uL_u2Qy3LuVZuxye4Wys">
+                        <span class="option-number">2</span>
+                        <span>APIキー 2</span>
+                    </div>
+                    <div class="api-option" data-api-key="AIzaSyBWScla0K91jUL6qQErctN9N2b3j9ds7HI">
+                        <span class="option-number">3</span>
+                        <span>APIキー 3</span>
+                    </div>
+                    <div class="api-option" data-api-key="AIzaSyA17CdOQtQRC3DQe7rgIzFwTUjwAy_3CAc">
+                        <span class="option-number">4</span>
+                        <span>APIキー 4</span>
+                    </div>
+                    <div class="api-option" data-api-key="AIzaSyDdk_yY0tN4gKsm4uyMYrIlv1RwXIYXrnw">
+                        <span class="option-number">5</span>
+                        <span>APIキー 5</span>
+                    </div>
+                    <div class="api-option" data-api-key="AIzaSyDeU5zpcth2OgXDfToyc7-QnSJsDc41UGk">
+                        <span class="option-number">6</span>
+                        <span>APIキー 6</span>
+                    </div>
+                    <div class="api-option" data-api-key="AIzaSyClu2V_22XpCG2GTe1euD35_Mh5bn4eTjA">
+                        <span class="option-number">7</span>
+                        <span>APIキー 7</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="setup-section">
+                <h2 class="setup-section-title">動画プレイヤーのソースを選択してください</h2>
+                <div class="player-source-options">
+                    <div class="player-source-option" data-source-index="0">
+                        <span class="option-number">1</span>
+                        <span>プレイヤーソース 1</span>
+                    </div>
+                    <div class="player-source-option" data-source-index="1">
+                        <span class="option-number">2</span>
+                        <span>プレイヤーソース 2</span>
+                    </div>
+                    <div class="player-source-option" data-source-index="2">
+                        <span class="option-number">3</span>
+                        <span>プレイヤーソース 3</span>
+                    </div>
+                    <div class="player-source-option" data-source-index="3">
+                        <span class="option-number">4</span>
+                        <span>プレイヤーソース 4</span>
+                    </div>
+                    <div class="player-source-option" data-source-index="4">
+                        <span class="option-number">5</span>
+                        <span>プレイヤーソース 5</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="startBtn" class="setup-btn" disabled>YouTubeクローンを開始</button>
+        </div>
+    </div>
+
+    <!-- メインアプリケーション -->
+    <div id="app" class="container hidden">
+        <!-- ヘッダー -->
+        <header>
+            <div class="header-left">
+                <div class="menu-icon" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="logo-container" id="goHome">
+                    <i class="fab fa-youtube logo-icon"></i>
+                    <span class="logo-text">YouTube</span>
+                    <span class="logo-subtitle">hgkf-Tube_v1</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container">
+                    <input type="text" class="search-input" id="searchInput" placeholder="検索">
+                    <button class="search-btn" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <div class="date-filter">
+                    <select id="dateFilter">
+                        <option value="">期間を選択</option>
+                        <option value="today">今日</option>
+                        <option value="this_week">今週</option>
+                        <option value="this_month">今月</option>
+                        <option value="this_year">今年</option>
+                    </select>
+                </div>
+                
+                <select class="api-selector" id="apiSelector">
+                    <option value="">APIキー変更</option>
+                    <option value="AIzaSyCz7f0X_giaGyC9u1EfGZPBuAC9nXiL5Mo">API 1</option>
+                    <option value="AIzaSyBmzCw7-sX1vm-uL_u2Qy3LuVZuxye4Wys">API 2</option>
+                    <option value="AIzaSyBWScla0K91jUL6qQErctN9N2b3j9ds7HI">API 3</option>
+                    <option value="AIzaSyA17CdOQtQRC3DQe7rgIzFwTUjwAy_3CAc">API 4</option>
+                    <option value="AIzaSyDdk_yY0tN4gKsm4uyMYrIlv1RwXIYXrnw">API 5</option>
+                    <option value="AIzaSyDeU5zpcth2OgXDfToyc7-QnSJsDc41UGk">API 6</option>
+                    <option value="AIzaSyClu2V_22XpCG2GTe1euD35_Mh5bn4eTjA">API 7</option>
+                </select>
+                
+                <select class="player-source-selector" id="playerSourceSelector">
+                    <option value="">プレイヤー変更</option>
+                    <option value="0">ソース 1</option>
+                    <option value="1">ソース 2</option>
+                    <option value="2">ソース 3</option>
+                    <option value="3">ソース 4</option>
+                    <option value="4">ソース 5</option>
+                </select>
+                
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- 検索フィルター -->
+        <div class="filter-container" id="filterContainer">
+            <button class="filter-btn active">すべて</button>
+            <button class="filter-btn">音楽</button>
+            <button class="filter-btn">ゲーム</button>
+            <button class="filter-btn">ライブ</button>
+            <button class="filter-btn">最近アップロードされた動画</button>
+            <button class="filter-btn">視聴済み</button>
+            <button class="filter-btn">新しい動画</button>
+        </div>
+        
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- サイドバー -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-item active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>ホーム</span>
+                </div>
+                <div class="divider"></div>
+            </div>
+            
+            <!-- コンテンツエリア -->
+            <div class="content-area" id="contentArea">
+                <!-- ホームページコンテンツ -->
+                <div id="homePage">
+                    <div class="video-grid" id="videoGrid">
+                        <!-- 動画カードがここに追加されます -->
+                    </div>
+                    <button class="load-more-btn" id="loadMoreVideos">もっと読み込む</button>
+                </div>
+                
+                <!-- プレイヤーページ -->
+                <div id="playerPage" class="player-page hidden">
+                    <div class="player-container">
+                        <div class="video-player" id="videoPlayer">
+                            <!-- 動画プレイヤーがここに表示されます -->
+                        </div>
+                        
+                        <div class="video-info-container">
+                            <h1 id="videoTitle"></h1>
+                            <div class="video-stats" id="videoStats"></div>
+                            
+                            <div class="channel-info" id="channelInfo">
+                                <!-- チャンネル情報がここに表示されます -->
+                            </div>
+                            
+                            <div class="video-description">
+                                <h3 class="video-description-title">説明</h3>
+                                <div class="video-description-text" id="videoDescription"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- チャンネルページ -->
+                <div id="channelPage" class="hidden">
+                    <div class="channel-header" id="channelHeader">
+                        <!-- チャンネルヘッダーがここに表示されます -->
+                    </div>
+                    
+                    <div class="channel-videos">
+                        <h3 class="section-title">チャンネルの動画</h3>
+                        <div class="video-grid" id="channelVideos">
+                            <!-- チャンネル動画がここに表示されます -->
+                        </div>
+                        <button class="load-more-btn" id="loadMoreChannelVideos">もっと読み込む</button>
+                    </div>
+                </div>
+                
+                <!-- ローディング表示 -->
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <div class="loading-text">読み込み中...</div>
+                </div>
+                
+                <!-- エラーメッセージ -->
+                <div id="errorMessage" class="error-message hidden">
+                    <h3 class="error-title">エラーが発生しました</h3>
+                    <div class="error-text" id="errorText"></div>
+                    <button class="load-more-btn" id="retryBtn">再試行</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- フッター -->
+        <footer>
+            <p>© 2023 YouTubeクローン - 福原弘基が作成しました</p>
+            <p>このサイトはYouTube Data API v3とYouTube Player for Educationを使用しています</p>
+        </footer>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/gh/woolisbest/hgkf-tube@main/main/script.js" defer></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"94c79d4d951745d085049dd7f2bbd8f8","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
